@@ -7,6 +7,10 @@ class Arguments():
 							default = False,
 							help='Turn on xbox listener',
 							)
+		parser.add_argument('-g', action='store_true', dest = 'gamepad',
+							default = False,
+							help='Turn on gamepad listener',
+							)
 		parser.add_argument('-s', action='store_true', dest = 'unix',
 							default = False,
 							help='Turn on LED socket',
@@ -19,3 +23,4 @@ class Arguments():
 		self.bt_flag = parser.parse_args().bt
 		self.unix_flag = parser.parse_args().unix
 		self.xbox_flag = parser.parse_args().xbox
+		self.gamepad_flag = parser.parse_args().gamepad

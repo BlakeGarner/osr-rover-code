@@ -4,7 +4,7 @@ import os
 import time
 from bluetooth import *
 import xbox
-
+import gamepad
 
 
 class Connections(object):
@@ -54,6 +54,16 @@ class Connections(object):
 		while not self.joy.connected():
 			time.sleep(1)
 		print 'Accepted connection from  Xbox controller', self.joy.connected()
+
+	def _gamepadConnect(self):
+		'''
+		Initializes a listener for a generic gamepad controller
+		'''
+		self.joy = gamepad.Joystick()
+		print 'Waiting on Gamepad'
+		while not self.joy.connected():
+			time.sleep(1)
+		print 'Accepted connection from Gamepad', self.joy.connected()
 
 	def _btVals(self):
 		'''
@@ -118,6 +128,7 @@ class Connections(object):
 		'''
 		if self.connection_type == "b":   self._btConnect()
 		elif self.connection_type == "x": self._xBoxConnect()
+		elif self.connection_type == "g": self._gamepadConnect()
 		else: return -1
 
 	def getDriveVals(self):
@@ -127,6 +138,7 @@ class Connections(object):
 
 		if self.connection_type == 'b':   v,r = self._btVals()
 		elif self.connection_type == 'x': v,r = self._xboxVals()
+		elif self.connection_type == 'g': v,r = self._xboxVals()
 		return (v,r)
 
 	def sendUnixData(self):
@@ -148,6 +160,8 @@ class Connections(object):
 			except:
 				pass
 		elif self.connection_type == 'x':
+			self.joy.close()
+		elif self.connection_ype == 'g':
 			self.joy.close()
 
 		if self.unix_sock != None:

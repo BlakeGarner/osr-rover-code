@@ -5,7 +5,7 @@ import threading
 class Threads():
 	def __init__(self):
 		self.kill = 1
-		ser = serial.Serial(
+		self.ser = serial.Serial(
 			port='/dev/ttyS0',
 			baudrate=9600,
 			parity=serial.PARITY_NONE,
@@ -17,7 +17,7 @@ class Threads():
 def SendData(self):
 	counter=0
 	while self.kill:
-		socket.write(str(counter))
+		self.ser.write(str(counter))
 		time.sleep(1)
 		counter +=1
 
