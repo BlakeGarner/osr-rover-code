@@ -21,7 +21,7 @@ def main():
 	with open('/home/pi/osr/rover/config.json') as f:
 		config = json.load(f)
 
-	rover = Rover(config,args.bt_flag,args.xbox_flag,args.unix_flag)
+	rover = Rover(config,args.bt_flag,args.xbox_flag,args.gamepad_flag,args.unix_flag)
 	
 	while True:
 		try:
