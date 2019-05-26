@@ -7,7 +7,7 @@
 
   "MOTOR_CONFIG": {
     "max_drive_current"  : 4.0,
-    "max_corner_current" : 10.0,
+    "max_corner_current" : 30.0,
     "controller_address" : [128,129,130,131,132]
 	},
 	

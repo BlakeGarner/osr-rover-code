@@ -32,6 +32,7 @@ class Motor(object):
 		version = 1
 		for address in self.address:
 			version = version & self.rc.ReadVersion(address)[0]
+			
 
 		if version != 0:
 			print "[Motor__init__] Sucessfully connected to RoboClaw motor controllers"

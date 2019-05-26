@@ -25,7 +25,7 @@ class Rover(Robot, Connections):
 
 		self.bt_flag = bt_flag
 		self.xbox_flag = xbox_flag
-                self.gamepad_flag = gamepad_flag
+		self.gamepad_flag = gamepad_flag
 		self.unix_flag = unix_flag
 		
 		super(Rover,self).__init__(config)
@@ -35,7 +35,7 @@ class Rover(Robot, Connections):
 			raise Exception( "[Rover init] Cannot initialize with both bluetooth and Xbox, run with only one argument")
 		elif bt_flag:   self.connection_type = "b"
 		elif xbox_flag: self.connection_type = "x"
-                elif gamepad_flag: self.connection_type = "g"
+		elif gamepad_flag: self.connection_type = "g"
 			
 		self.connectController()
 	

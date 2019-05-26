@@ -1,0 +1,48 @@
+Use the lite image.
+Don't forget to add the "ssh" file to the boot partition.
+
+sudo raspi-config
+ - Locale
+ - Timezone
+ - Serial: No login shell, serial interface enabled.
+ - Expand file system.
+
+sudo apt update
+sudo apt upgrade
+ 
+sudo apt install git vim python-pip evtest python-bluez
+
+cd ~
+git clone https://github.com/BlakeGarner/osr-rover-code osr
+
+sudo pip install pyserial evdev numpy
+# Note that numpy takes FOREVER to load...
+
+
+** Pair Bluetooth controller
+Add the following to /etc/rc.local:
+bash -c 'echo 1 > /sys/module/bluetooth/parameters/disable_ertm = 1'
+
+sudo bluetoothctl
+
+agent on
+default-agent
+scan on
+<Set controller into discoverable mode: Power on, then hold back button on for three seconds>
+connect <Controller's MAC>
+trust <Controller's MAC>
+quit
+
+<Restart controller: Hold down Xbox button for 10 sec, then press again for 1 sec>
+
+
+
+** Start Script on startup
+sudo vim /etc/rc.local
+Add the following to /etc/rc.local:
+sudo python /home/pi/osr/led/screen.py &
+sleep 10
+sudo python /home/pi/osr/rover/main.py -s -g &
+# Note that the -g is for the custom "gamepad" profile I added for bluetooth controller support.
+
+exit 0

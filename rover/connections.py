@@ -63,7 +63,7 @@ class Connections(object):
 		print 'Waiting on Gamepad'
 		while not self.joy.connected():
 			time.sleep(1)
-                        self.joy = gamepad.Gamepad()
+			self.joy = gamepad.Gamepad()
 		print 'Accepted connection from Gamepad', self.joy.connected()
 
 	def _btVals(self):
@@ -146,12 +146,9 @@ class Connections(object):
 		'''
 		Sends the LED screen process commands for the face over unix socket
 		'''
-                print "Send Unix"
-                if self.unix_sock == None:
-                    self.unixSockConnect()
-                print "Mid Send Unix"
+		if self.unix_sock == None:
+			self.unixSockConnect()
 		self.unix_sock.send(str(self.led))
-                print "Send Unix complete"
 
 	def closeConnections(self):
 		'''
@@ -170,5 +167,5 @@ class Connections(object):
 		elif self.connection_type == 'g':
 			self.joy.close()
 
-#		if self.unix_sock != None:
-#			self.unix_sock.close()
+		if self.unix_sock != None:
+			self.unix_sock.close()
