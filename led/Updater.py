@@ -94,7 +94,7 @@ class updater():
 
 	def set_all_to_null(self,connected):
 		self.screenOutput = [[0 for y in range(32)] for x in range(16)]
-		self.screenOutput[1][31] = connected + 1
+		#self.screenOutput[1][31] = connected + 1
 		#print self.screenOutput
 		self.refresh(connected)
 
@@ -102,7 +102,7 @@ class updater():
 		if(self.display.hasChanged()):
 			self.screenOutput = self.display.readMatrix()
 		#print self.screenOutput
-		self.screenOutput[1][31] = connected + 1
+		#self.screenOutput[1][31] = connected + 1
 		#print "updating"
 		for row in range(8):
 			time.sleep(delay)

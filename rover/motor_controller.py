@@ -3,6 +3,7 @@ from roboclaw import Roboclaw
 import time
 import serial
 import math
+import datetime
 
 class Motor(object):
 	'''
